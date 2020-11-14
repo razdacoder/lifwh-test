@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>LIFWH - Admin</title>
+</head>
+<body>
+    <div class="admin">
+        <!-- <div class="admin-container"> -->
+            <div class="admin-header">
+                <img src=" {% static 'images/logo-white.png' %}" alt="">
+                <a href="{% url 'admin_logout' %}" class="logout">Logout</a>
+            </div>
+            <div class="admin-tab">
+                <a href="{% url 'admin_board' %}">Dashboard</a>
+                <a href="{% url 'admin_course' %}">Courses</a>
+                <a href="{% url 'admin_message' %}" class="active">Messages</a>
+                <a href="{% url 'admin-settings' %}">Settings</a>
+            </div>
+            <div class="admin-content">
+                <div class="messages-box">
+                    
+                    {% for contact in contacts %}
+                    <div class="message">
+                        <h5>{{ contact.name }}</h5>
+                        <p>{{ contact.message }}</p>
+                        
+                    </div>
+                    {% endfor %}
+                        
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</body>
+</html>

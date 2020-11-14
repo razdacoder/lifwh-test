@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,400;0,500;0,900;1,200;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}" />
+    <link rel="shortcut icon" href="{% static 'images/lifwh-logo.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>LIFWH - {% block title %} Replace This {% endblock title %}</title>
+    <style>
+      .auth {
+        width: 15%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .log-link {
+        font-size: 16px;
+        color: #aaaaaa;
+        font-weight: 700;
+      }
+
+      .alert {
+          width: 30%;
+          padding: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 80px;
+          border-radius: 0px 0px 8px 8px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+          font-size: 18px;
+          font-weight: 700;
+          color: #f4f4f4;
+      }
+
+      .error {
+          background-color: red;
+      }
+
+      .success {
+          background-color: green;
+      }
+    </style>
+  </head>
+  <body onload="onload();">
+    <div class="container">
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+            
+    {% endif %}
+    
+      <header class="header">
+        <div class="logo-box">
+          <img src="{% static 'images/lifwh-logo.png' %}" alt="" />
+        </div>
+        <!-- <div class="main-nav"> -->
+        {% if request.user.is_authenticated %}
+        <nav class="nav">
+          <a href="{% url 'dashboard' %}" class="nav-link">Dashboard</a>
+          <a href="{% url 'course_view' %}" class="nav-link">Courses</a>
+           <a href="{% url 'profile' %}" class="nav-link">Account</a>
+          <!-- <a href="" class="nav-link">Blog</a> -->
+        </nav>
+        <div class="nav-profile">
+          <button class="nav-profile-dropdown">
+            <p>{{ request.user.first_name }}</p>
+            <i class="ion-chevron-up"></i>
+            <div class="dropdown">
+              <ul>
+                <li>
+                  <a href="{% url 'profile' %}">Account Settings</a>
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </button>
+          <div class="initial">{{ request.user.get_initial }}</div>
+          <!-- <img src="resources/css/img/calculator.jpg" class="profile-img" alt=""> -->
+        </div>
+
+        <!-- </div> -->
+        <div class="res-up">
+          <div class="res-initial">{{ request.user.get_initial }}</div>
+          <div class="burger">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+
+        <div class="responsive">
+          <div class="close">
+            <div class="one"></div>
+            <div class="two"></div>
+          </div>
+          <div class="responsive-nav">
+            <a href="" class="responsive-nav-link">Dashboard</a>
+            <a href="" class="responsive-nav-link">Courses</a>
+            <a href="" class="responsive-nav-link">Account</a>
+            <a href="" class="responsive-nav-link">Blog</a>
+          </div>
+        </div>
+        {% else %}
+        <div class="auth">
+          <a href="{% url 'register' %}" class="log-link">Sign Up</a>
+          <a href="log-link" class="log-link">Sign in</a>
+        </div>
+        {% endif %}
+      </header>
+
+      {% block content %} Replace This {% endblock content %}
+    </div>
+    <section class="section-footer" style="padding: 40px 0px; margin-top: 50px">
+      <div class="container">
+        <div class="row-me footer">
+          <div class="flex-footer">
+            <div class="about-footer">
+              <a href="" class="footer-link">About</a>
+              <a href="" class="footer-link">Contact</a>
+              <a href="" class="footer-link">Terms &amp; Conditions</a>
+            </div>
+            <div class="social-footer">
+              <a href="" class="social-links">
+                <i class="ion-social-facebook"></i>
+                <p>Facebook</p>
+              </a>
+              <a href="" class="social-links">
+                <i class="ion-social-twitter"></i>
+                <p>Twitter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              </a>
+              <a href="" class="social-links">
+                <i class="ion-social-youtube"></i>
+                <p>Youtube&nbsp;&nbsp;&nbsp;</p>
+              </a>
+            </div>
+            <div class="subscribe-footer">
+              <h6 class="footer-head">Subscribe to our newsteller</h6>
+              <form action="{% url 'subscribe' %}" class="footer-form" method="POST">
+                {% csrf_token %}
+                <input
+                  type="email"
+                  class="sub-input"
+                  name="email"
+                  required
+                  placeholder="Email Address"
+                />
+                <button type="submit" class="btn-sub">OK</button>
+              </form>
+            </div>
+            <div class="address-footer">
+              <p>497 Evergreen Rd. Roseville, 95673</p>
+              <p>+44 345 678 903</p>
+              <p>hassan@mail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

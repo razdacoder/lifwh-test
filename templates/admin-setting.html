@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>LIFWH - Admin</title>
+</head>
+<body>
+    <div class="admin">
+        <!-- <div class="admin-container"> -->
+            <div class="admin-header">
+                <img src=" {% static 'images/logo-white.png' %}" alt="">
+                <a href="{% url 'admin_logout' %}" class="logout">Logout</a>
+            </div>
+            <div class="admin-tab">
+                <a href="{% url 'admin_board' %}">Dashboard</a>
+                <a href="{% url 'admin_course' %}">Courses</a>
+                <a href="{% url 'admin_message' %}">Messages</a>
+                <a href="{% url 'admin-settings' %}"  class="active">Settings</a>
+            </div>
+            <div class="admin-content">
+                <div class="form-div" style="display: flex; justify-content: space-around; flex-direction: column;">
+                    
+                    <form action="{% url 'admin_edit_profile' %}" method="post" class="settings-form" style="width: 45%;">
+                        <h3 class="form-head">Update Profile</h3>
+                        <div class="inner-form">
+                            <div class="form-group">
+                                <label class="form-group-label">Email</label>
+                                <input type="email" name="email" class="form-group-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group-label">Firstname</label>
+                                <input type="text" name="first_name" class="form-group-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group-label">Lastname</label>
+                                <input type="text" name="last_name" class="form-group-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group-label">Phone number</label>
+                                <input type="tel" name="number" class="form-group-input" required />
+                            </div>
+                            
+                        </div>
+                        <div class="left">
+                            <div></div>
+                            <button type="submit" class="btn-submit">Save Changes</button>
+                        </div>
+                        </form>
+
+                        <form action="{% url 'admin_edit_pass' %}" style="width: 45%;">
+                            <h3 class="form-head">Update Password</h3>
+                            <div class="inner-form">
+                                <div class="form-group">
+                                    <label class="form-group-label">Password</label>
+                                    <input type="password" name="password" class="form-group-input" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group-label">New Password</label>
+                                    <input type="password" name="password1" class="form-group-input" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group-label">Confirm Password</label>
+                                    <input type="password" name="password2" class="form-group-input" required />
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn-submit">Save Changes</button>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</body>
+</html>

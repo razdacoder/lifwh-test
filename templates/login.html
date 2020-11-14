@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block content %}
+    <section class="auth-form">
+        <form action="" method="post" class="login-form">
+            {% csrf_token %}
+          <h3 class="form-header">Login</h3>
+          <div class="form-group">
+            <label for="" class="form-group-label">Email</label>
+            <input
+              type="email"
+              name="email"
+              class="form-group-input"
+              id=""
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="" class="form-group-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              class="form-group-input"
+              id=""
+              required
+            />
+          </div>
+          <div class="form-div">
+            <a href="{% url 'reset_password' %}" class="forgot">Forgot your password?</a>
+            <div class="remember">
+              <div>
+                <input type="checkbox" name="remember" id="remember-me" />
+                <label for="remember-me">Remember me</label>
+              </div>
+
+              <button type="submit" class="btn-submit">Login</button>
+            </div>
+          </div>
+
+          <p class="form-text-link">
+            If you don't have an account? <a href="{% url 'register' %}" class="forgot">Sign up</a>
+          </p>
+        </form>
+      </section>
+{% endblock content %}
+    

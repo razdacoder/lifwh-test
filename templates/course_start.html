@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ course.title }}
+{% endblock title %}
+
+
+{% block content %}
+<section class="course_start">
+    <h3 class="heading">
+      <span>{{ course.title }}</span>
+    </h3>
+    <div class="course_start_row">
+      <div class="video-box">
+        <!-- <iframe src="" frameborder="1" class="frame"></iframe> -->
+        
+        <video width="100%" id="video" onended="onVideoEnded();" controls autoplay style="outline: none;"></video>
+        
+        <div class="video-box-footer">
+          <div class="check">
+            <img src="{% static 'images/download-app.svg' %}" alt="">
+            <a href="{% url 'show_pdf' course.pdf.path %}" target="_blank" style="color: #777;">Please Read the PDF</a>
+          </div>
+          <button class="btn-start" onclick="update();">Continue</button>
+        </div>
+      </div>
+      <div class="content-box">
+        <div class="row-col">
+                {% for video in videos %}
+                    <div class="item active">
+                        <div class="item-num-con">
+                          <span class="item-num">{{ forloop.counter }}</span>
+                          <button value="{{ video.video.url }}" class="item-text" onclick="playVideo('{{ video.video.url }}');"  style="cursor: pointer; background: none; border: none; text-align: left; outline: none;">{{ video.get_name }}</button>
+                        </div>
+                        <!-- <span>3.27</span> -->
+                    </div>
+                {% endfor %}
+
+                
+            
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    video = document.getElementById("video")
+    videoList = []
+    videoIndex = 0;
+    videoPlayer = video;
+    
+    {% for video in videos %}
+      videoList.push("{{ video.video.url }}")
+    {% endfor %}
+    
+    function onload(){
+      console.log('Body Loaded')
+      if(videoPlayer) {
+        videoPlayer.setAttribute("src", videoList[videoIndex])
+        videoPlayer.play()
+      }
+    }
+    function onVideoEnded(){
+      console.log("Video Ended")
+      if(videoIndex < videoList.length - 1) {
+        videoIndex++
+      } else {
+        videoIndex = 0
+      }
+
+      videoPlayer.setAttribute('src', videoList[videoIndex])
+      videoPlayer.play()
+
+      
+
+
+    }
+
+
+    function playVideo(url) {
+      videoPlayer.setAttribute('src', url)
+      videoPlayer.play()
+    }
+
+
+    function update() {
+      fetch(`http://127.0.0.1:8000/updateProgress/{{ course.id }}/`)
+    }
+    
+  </script>
+{% endblock content %}
+    
+    

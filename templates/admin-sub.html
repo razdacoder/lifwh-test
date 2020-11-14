@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>LIFWH - Admin</title>
+
+    <style>
+
+        input {
+            width: 100%;
+            padding: 17px;
+            border: 3px solid #f2f2f2;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+
+        .form {
+            width: 100%;
+            margin: auto;
+            margin-bottom: 25px;
+        }
+        .row {
+            width: 100%;
+            
+        }
+
+        .users {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .users h3 {
+            font-size: 18px;
+        }
+
+        .users p {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .users a {
+            padding: 15px;
+            background-color: green;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="admin">
+        <!-- <div class="admin-container"> -->
+            <div class="admin-header">
+                <img src=" {% static 'images/logo-white.png' %}" alt="">
+                <a href="{% url 'admin_logout' %}" class="logout">Logout</a>
+            </div>
+            <div class="admin-tab">
+                <a href="{% url 'admin_board' %}" >Dashboard</a>
+                <a href="{% url 'admin_course' %}"  >Courses</a>
+                <a href="">Messages</a>
+                <a href="{% url 'admin_subsribers' %}" class="active">Subscribers</a>
+                <a href="">Settings</a>
+                
+            </div>
+            <div class="admin-content">
+                <form class="form" action="{% url 'admin_subsribers_search' %}">
+                    <input type="email" placeholder="Search by email" name="email">
+                <form>
+                <div class="row">
+                
+                {% for user in users %}
+                    <div class="users">
+                        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                        <p>{{ user.plan }}</p>
+                        <a href="{% url 'admin_subsribers_cancel' user.id %}">Cancel</a>
+                    </div>
+                {% endfor %}
+                    
+                    
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</body>
+</html>

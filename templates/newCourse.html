@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>LIFWH - Admin</title>
+</head>
+<body>
+    <div class="admin">
+        <!-- <div class="admin-container"> -->
+            <div class="admin-header">
+                <img src=" {% static 'images/logo-white.png' %}" alt="">
+                <a href="{% url 'admin_logout' %}" class="logout">Logout</a>
+            </div>
+            <div class="admin-tab">
+                <a href="{% url 'admin_board' %}">Dashboard</a>
+                <a href="{% url 'admin_course' %}"  class="active">Courses</a>
+                <a href="{% url 'admin_message' %}">Messages</a>
+                <a href="{% url 'admin-settings' %}">Settings</a>
+            </div>
+            <div class="admin-content">
+                <div class="form-div">
+                    <form action="" class="new-course" enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                        <h2 class="form-head">New Course</h2>
+                        <div class="inner-form">
+                            <div class="form-group">
+                                <label for="" class="form-group-label">Plan</label>
+                                <select name="plan" id="" class="form-group-input">
+                                    <option value="foundation">Foundation</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="Enterprise">Enterprise</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="form-group-label">Title</label>
+                                <input type="text" class="form-group-input"  name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="form-group-label">Description</label>
+                                <textarea name="des" placeholder="Description" class="form-group-input" id="" cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="form-group-label">Image</label>
+                                <input type="file" class="form-group-input" required name="image">
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="form-group-label">PDF</label>
+                                <input type="file" class="form-group-input" required name="pdf">
+                            </div>
+                            <div class="left">
+                                <div></div>
+                                <button type="submit" class="btn-submit">Create</button>
+                              </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</body>
+</html>

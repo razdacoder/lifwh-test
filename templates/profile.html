@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ request.user.first_name }}
+{% endblock title %}
+{% block content %}
+    <section class="account-profile">
+        <h3 class="heading">My Account</h3>
+        <div class="account-section">
+          <div class="account-tab">
+            <a href="{% url 'profile' %}" class="tab-link active">Profile</a>
+            <a href="{% url 'profile_pass' %}" class="tab-link">Password</a>
+            <a href="{% url 'profile_not' %}" class="tab-link three">Notifications</a>
+            <a href="{% url 'profile_bills' %}" class="tab-link">Billing</a>
+          </div>
+          <div class="account-content">
+            <div class="big-initial">{{ request.user.get_initial }}</div>
+            <form action="{% url 'edit_profile' %}" method="post" class="profile-form">
+                {% csrf_token %}
+              <div class="inner-form">
+                <div class="form-group">
+                  <label class="form-group-label">Email</label>
+                  <input type="email" class="form-group-input" value="{{ request.user.email}}" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-group-label">Firstname</label>
+                  <input type="text" class="form-group-input" value="{{ request.user.first_name}}" name="first_name" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-group-label">Lastname</label>
+                  <input type="text" class="form-group-input" value="{{ request.user.last_name}}" name="last_name" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-group-label">Contact number</label>
+                  <input type="tel" class="form-group-input" value="{{ request.user.number}}" name="number" required />
+                </div>
+                {% comment %} <div class="form-group">
+                  <label class="form-group-label">Email</label>
+                  <input type="email" class="form-group-input" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-group-label">Email</label>
+                  <input type="email" class="form-group-input" required />
+                </div> {% endcomment %}
+              </div>
+              <div class="left">
+                <div></div>
+                <button type="submit" class="btn-submit">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+{% endblock content %}

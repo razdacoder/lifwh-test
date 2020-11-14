@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Courses
+{% endblock title %}
+    
+
+{% block content %}
+    <section class="courses">
+    <h3 class="heading">Courses</h3>
+    <div class="grid-box">
+    
+    {% for course in courses %}
+        <div class="card">
+        <img src="{{ course.image.url }}" alt="" />
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ course.title }}
+          </h4>
+          <div class="card-details">
+            <span>
+              <p>23min</p>
+              <p>Views 283</p>
+            </span>
+            <span>
+              <a href="{% url 'course_over_view' course.id %}" class="over">Overview</a>
+              |
+              <a href="{% url 'course_start_view' course.id %}" class="start">Start</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+        
+      
+      
+      
+    </div>
+  </section>
+{% endblock content %}
+    
+
+

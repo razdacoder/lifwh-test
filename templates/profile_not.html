@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ request.user.first_name }}
+{% endblock title %}
+{% block content %}
+    <section class="account-profile">
+        <h3 class="heading">My Account</h3>
+        <div class="account-section">
+          <div class="account-tab">
+            <a href="{% url 'profile' %}" class="tab-link">Profile</a>
+            <a href="{% url 'profile_pass' %}" class="tab-link">Password</a>
+            <a href="{% url 'profile_not' %}" class="tab-link three active">Notifications</a>
+            <a href="{% url 'profile_bills' %}" class="tab-link">Billing</a>
+          </div>
+          <div class="account-content">
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center">
+              <p style="font-size: 16px">You have no new Notification</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+{% endblock content %}

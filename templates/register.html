@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+
+{% block content %}
+<section class="auth-form register">
+    <form action="" method="post" class="register-form">
+    {% csrf_token %}
+      <h3 class="form-header">Sign Up</h3>
+      <div class="inner-form">
+        <div class="form-group">
+          <label for="" class="form-group-label">First name</label>
+          <input
+            type="text"
+            name="firstname"
+            class="form-group-input"
+            id=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="" class="form-group-label">Last name</label>
+          <input
+            type="text"
+            name="lastname"
+            class="form-group-input"
+            id=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="" class="form-group-label">Contact Number</label>
+          <input
+            type="tel"
+            name="number"
+            class="form-group-input"
+            id=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="" class="form-group-label">Email</label>
+          <input
+            type="Email"
+            name="email"
+            class="form-group-input"
+            id=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="" class="form-group-label">Password</label>
+          <input
+            type="password"
+            name="password1"
+            class="form-group-input"
+            id=""
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="" class="form-group-label">Retype Password</label>
+          <input
+            type="password"
+            name="password2"
+            class="form-group-input"
+            id=""
+            required
+          />
+        </div>
+      </div>
+  
+      <div class="form-div">
+        <a href="#" class="forgot"></a>
+        <div class="remember">
+          <!-- <div>
+                  <input type="checkbox" name="remember" id="remember-me" />
+                  <label for="remember-me">Remember me</label>
+                </div> -->
+  
+          <button type="submit" class="btn-submit">Submit</button>
+        </div>
+      </div>
+  
+      <p class="form-text-link">
+        If you have an account? <a href="{% url 'login' %}" class="forgot">Sign in</a>
+      </p>
+    </form>
+  </section>
+{% endblock content %}
+    
+

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ request.user.first_name }}
+{% endblock title %}
+{% block content %}
+    <section class="account-profile">
+        <h3 class="heading">My Account</h3>
+        <div class="account-section">
+          <div class="account-tab">
+            <a href="{% url 'profile' %}" class="tab-link">Profile</a>
+            <a href="{% url 'profile_pass' %}" class="tab-link">Password</a>
+            <a href="{% url 'profile_not' %}" class="tab-link three">Notifications</a>
+            <a href="{% url 'profile_bills' %}" class="tab-link active">Billing</a>
+          </div>
+          <div class="account-content">
+            <div class="billings">
+              <h4 class="update-head">billings</h4>
+
+              
+              {% if request.user.plan == "foundation" %}
+                <p class="bill-pay">NGN 1000/mo</p>
+              
+              {% elif request.user.plan == "intermediate" %}
+                <p class="bill-pay">NGN 3000/mo</p>
+              {% elif request.user.plan == "enterprise" %}
+                <p class="bill-pay">NGN 5000/mo</p>
+              {% else %}
+                <p class="bill-pay">You are not subscribe to any plan yet!</p>
+              {% endif %}
+                
+              
+              <!-- <p class="bill-pay">Next payment is scheduled for Nov28,2020.</p> -->
+              <p class="bill-pay">Payment Gateway : Paystack</p>
+
+              <img
+                src="{% static 'images/paystack.png' %}"
+                class="billings-img"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock content %}

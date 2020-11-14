@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>LIFWH - Admin</title>
+</head>
+<body>
+    <div class="admin">
+        <!-- <div class="admin-container"> -->
+            <div class="admin-header">
+                <img src=" {% static 'images/logo-white.png' %}" alt="">
+                <a href="{% url 'admin_logout' %}" class="logout">Logout</a>
+            </div>
+            <div class="admin-tab">
+                <a href="{% url 'admin_board' %}" class="active">Dashboard</a>
+                <a href="{% url 'admin_course' %}"  >Courses</a>
+                <a href="">Messages</a>
+                <a href="">Settings</a>
+            </div>
+            <div class="admin-content">
+                <div class="grid-box">
+                    
+                    {% for course in courses %}
+                    <div class="card">
+                        <img src="{{ course.image.url }}" alt="" />
+                        <div class="card-body">
+                          <h4 class="card-title">
+                            {{ course.title }}
+                          </h4>
+                          <div class="card-details">
+                            <span>{{ course.students|length }} Students</span>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                        
+                      
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</body>
+</html>

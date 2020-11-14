@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/lifwh-logo.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Admin Login</title>
+    <style>
+        .alert {
+          width: 30%;
+          padding: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 80px;
+          border-radius: 0px 0px 8px 8px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+          font-size: 18px;
+          font-weight: 700;
+          color: #f4f4f4;
+      }
+
+      .error {
+          background-color: red;
+      }
+
+      .success {
+          background-color: green;
+      }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+            
+    {% endif %}
+    <section class="auth-form" style="margin-top: 200px;">
+        <form action="" method="post" class="login-form">
+            {% csrf_token %}
+          <h3 class="form-header">Admin Login</h3>
+          <div class="form-group">
+            <label for="" class="form-group-label">Email</label>
+            <input
+              type="email"
+              name="email"
+              class="form-group-input"
+              id=""
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="" class="form-group-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              class="form-group-input"
+              id=""
+              required
+            />
+          </div>
+          <div class="form-div">
+            <a href="{% url 'reset_password' %}" class="forgot">Forgot your password?</a>
+            <div class="remember">
+              <div>
+                <input type="checkbox" name="remember" id="remember-me" />
+                <label for="remember-me">Remember me</label>
+              </div>
+
+              <button type="submit" class="btn-submit">Login</button>
+            </div>
+          </div>
+
+          <p class="form-text-link">
+            If you don't have an account? <a href="{% url 'register' %}" class="forgot">Sign up</a>
+          </p>
+        </form>
+      </section>
+
+    
+</body>
+</html>
+    

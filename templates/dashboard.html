@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Courses
+{% endblock title %}
+    
+
+{% block content %}
+    <section class="courses">
+    <h3 class="heading">My Courses</h3>
+    <div class="grid-box">
+    
+    {% for course in courses %}
+        <div class="card">
+        <img src="{{ course.course.image.url }}" alt="" />
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ coursecourse.title }}
+          </h4>
+          <div class="card-details">
+            <progress value="{{ course.progress }}" max="100">{{ course.progress }}%</progress>
+            <span>
+              
+              {% if course.progress == 100 %}
+                Completed
+              {% else %}
+              <a href="{% url 'course_start_view' course.course.id %}" class="start">Resume</a>
+              {% endif %}
+                
+              
+            </span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+        
+      
+      
+      
+    </div>
+  </section>
+{% endblock content %}
+    
+
+

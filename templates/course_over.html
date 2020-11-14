@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ course.title }}
+{% endblock title %}
+{% block content %}
+    <section class="overview">
+        <h3 class="heading">
+          <span>{{ course.title }}</span>
+        </h3>
+        <div class="overview-box">
+            <div class="acc-box">
+                <div class="acc">
+                    <div class="acc-head">
+                    <h4 class="acc-heading">{{ course.title }}</h4>
+                    </div>
+                    
+                    {% for video in videos %}
+                        <div class="acc-body">
+                            <div class="acc-body-left" style="width: 60%;">
+                            <i class="ion-ios-play-outline"></i>
+                            <p class="acc-body-text" style="width: 90%;">{{ video.get_name }}</p>
+                            </div>
+                            <span>14.89min</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            <div class="btn-box">
+                <button class="btn-link">Back</button>
+                <a href="{% url 'course_start_view' course.id %}" class="btn-start">Start</a>
+            </div>
+            </div>
+        </div>
+      </section>
+{% endblock content %}

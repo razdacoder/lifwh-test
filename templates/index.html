@@ -1,0 +1,454 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/normalize.css' %}"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/grid.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/ionicons.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style2.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/queries.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,400;0,500;0,900;1,200;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .alert {
+          width: 30%;
+          padding: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 80px;
+          border-radius: 0px 0px 8px 8px;
+          position: fixed;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+          font-size: 18px;
+          font-weight: 700;
+          color: #f4f4f4;
+      }
+
+      .error {
+          background-color: red;
+      }
+
+      .success {
+          background-color: green;
+      }
+
+      .info {
+        background-color: 	#808000;
+      }
+    </style>
+    <title>Learn Islamic Finance with Hassan</title>
+  </head>
+
+  <body>
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+            
+    {% endif %}
+    <header
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url({% static 'images/hero-bg.jpg' %});
+      "
+    >
+      <nav>
+        <div class="row-me">
+          <a href="{% url 'index' %}">
+            <img
+              src="{% static 'images/lifwh-logo.png' %}"
+              alt="lifwh logo"
+              class="logo"
+            />
+          </a>
+
+          <ul class="main-nav">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="{% url 'course_view' %}">Courses</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#contact">Contact</a></li>
+            {% if request.user.is_authenticated %}
+              <li><a href="{% url 'profile' %}">Account</a></li>
+            {% endif %}
+            
+          </ul>
+        </div>
+      </nav>
+      <div class="hero-text-box">
+        <h1>
+          <blockquote>
+            cooperation in righteousness and piety, but do not cooperate in sins
+            and aggression.
+          </blockquote>
+          <cite>(Qur’aan 5:2).</cite>
+        </h1>
+        
+        {% if request.user.is_authenticated == False %}
+          <a class="btn btn-full" href="{% url 'login' %}">Sign In</a>
+          <a class="btn btn-ghost" href="{% url 'register' %}">Sign Up</a>
+        {% endif %}
+          
+        
+      </div>
+    </header>
+    <section class="section-features">
+      <div class="row">
+        <h2>Come Let’s Succeed Together</h2>
+        <p class="long-copy">
+          Hello, we’re Omnifood, your new premium food delivery service. We know
+          you’re always busy. No time for cooking. So let us take care of that,
+          we’re really good at it, we promise!
+        </p>
+      </div>
+
+      <div class="row-me">
+        <div class="col span-1-of-3 box">
+          <i class="ion-ios-infinite-outline icon-big"></i>
+          <h3>About LIFWH</h3>
+          <p>
+            Since opening in 2019, I have been committed to the way our students
+            learn. I believe in maintaining a positive mindset, creating
+            partnerships with a purpose, and always striving for significant
+            outcomes. When you work with me, you should expect a collaboration
+            with transparency and consistency. Want to learn more? Contact me
+            today for an initial consultation.
+          </p>
+        </div>
+        <div class="col span-1-of-3 box">
+          <i class="ion-ios-infinite-outline icon-big"></i>
+          <h3>Our Courses</h3>
+          <p>
+            Our online classes are brought to life through real-world cases,
+            putting you in the shoes of Islamic finance experts. Hear first hand
+            the challenges they faced, and wrestle with the same issues and
+            imperfect information. As you discuss and debate solutions with your
+            peers, you will learn vital Islamic concepts you can apply in your
+            own career.
+          </p>
+        </div>
+        <div class="col span-1-of-3 box">
+          <i class="ion-ios-stopwatch-outline icon-big"></i>
+          <h3>Our Teams</h3>
+          <p>
+            The best companions are whose appearance reminds you of Allaah, and
+            whose speech increasesyou in knowledge, and whose actions remind you
+            of the Hereafter. Our team is motivated by core Islamic mode of
+            teaching with advanced backgrounds in finance and economics.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="price-section"
+      style="
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url({% static 'images/calculator.jpg' %});
+      "
+      id="plans"
+    >
+      <div class="row">
+        <h2>Our Pricing &mdash; Go ahead</h2>
+        <div class="row-me">
+          <div class="col span-1-of-3 box">
+            <div class="plan-box">
+              <div>
+                <h3>Foundation</h3>
+                <p class="price-plan">&#8358;1000</p>
+                <p class="price-member">/Membership</p>
+              </div>
+              <div>
+                <p>Benefits</p>
+                <ul>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>free
+                    podcast
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>limited
+                    videos
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>free
+                    Materials
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>2 time
+                    online class
+                  </li>
+                  <li>&nbsp;</li>
+                </ul>
+              </div>
+              <div>
+              
+              {% if request.user.is_authenticated == False %}
+                <a href="{% url 'register' %}" class="btn btn-full">Sign Up</a>
+              {% else %}
+                <a href="https://paystack.com/pay/1jp0g25afo" target="_blank" class="btn btn-full">Subscribe</a>
+              {% endif %}
+                
+                
+              </div>
+            </div>
+          </div>
+          <div class="col span-1-of-3 box">
+            <div class="plan-box">
+              <div>
+                <h3>Intermediate</h3>
+                <p class="price-plan">&#8358;3000</p>
+                <p class="price-member">/Membership</p>
+              </div>
+              <div>
+                <p>Benefits</p>
+                <ul>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>free
+                    podcast
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>unlimited
+                    videos
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>free
+                    Materials
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>scheduled
+                    online class
+                  </li>
+                  <li>&nbsp;</li>
+                </ul>
+              </div>
+              <div>
+                {% if request.user.is_authenticated == False %}
+                <a href="{% url 'register' %}" class="btn btn-full">Sign Up</a>
+              {% else %}
+                <a href="https://paystack.com/pay/hlnx9lb1an" target="_blank" class="btn btn-full">Subscribe</a>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="col span-1-of-3 box">
+            <div class="plan-box">
+              <div>
+                <h3>Enterprise</h3>
+                <p class="price-plan">&#8358;5000</p>
+                <p class="price-member">/Membership</p>
+              </div>
+              <div>
+                <p>Benefits</p>
+                <ul>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i> Book
+                    appointment
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>Islamic
+                    Economic
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>Islamic
+                    Accounting
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>Islamic
+                    mode of finance
+                  </li>
+                  <li>
+                    <i class="ion-ios-checkmark-empty icon-small"></i>Islamic
+                    fund management
+                  </li>
+                </ul>
+              </div>
+              <div>
+                {% if request.user.is_authenticated == False %}
+                <a href="{% url 'register' %}" class="btn btn-full">Sign Up</a>
+              {% else %}
+                <a href="https://paystack.com/pay/bawvi3sa04" target="_blank" class="btn btn-full">Subscribe</a>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-about" id="about">
+      <div class="row">
+        <h2>About Me</h2>
+        <div class="col span-1-of-3">
+          <img
+            src="{% static 'images/H_logo.png' %}"
+            alt="h-logo"
+            class="h-logo"
+          />
+        </div>
+
+        <div class="col span-1-of-2 about-copy">
+          <h3>LEARN ISLAMIC WITH HASSAN</h3>
+          <p>
+            Learn Islam finance with Hassan (LIFH) is a Germany-based online
+            educational platform founded in 2019 by Hassan Durojaiye. He had his
+            Bachelor in finance and accounting, and bagged his M. Sc in Islamic
+            Finance at International Institute of Islamic banking and finance.
+            He is passionate about passing knowledge and solving social problem
+            according to the dictate of Allah and the teachings of the Prophet
+            Muhammed (SAW).<br /><br />
+            Prior LIFH initiative, He have been providing professional
+            consulting services to clients from Lagos State Nigeria and beyond.
+            From Islamic strategic planning to structuring of Islamic
+            facilities, his focus is always on building an efficient and
+            results-driven relationship. He will work with you to create a
+            customized plan of action for yourself or your organization in
+            accordance with Shariah compliance. Get in touch to learn more about
+            his vision and consulting approach.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-form" id="contact">
+      <div class="row">
+        <h2>We're happy to hear from you</h2>
+        <div class="row">
+          <form method="post" action="{% url 'contact' %}" class="contact-form">
+          {% csrf_token %}
+            <div class="row">
+              <div class="col span-1-of-3">
+                <label for="name">Name</label>
+              </div>
+              <div class="col span-2-of-3">
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col span-1-of-3">
+                <label for="email">Email</label>
+              </div>
+              <div class="col span-2-of-3">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Your email"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col span-1-of-3">
+                <label for="newsletter">Newsletter</label>
+              </div>
+              <div class="col span-2-of-3">
+                <input
+                  type="checkbox"
+                  name="newsletter"
+                  id="newsletter"
+                  checked
+                />
+                Yes, Please
+              </div>
+            </div>
+            <div class="row">
+              <div class="col span-1-of-3">
+                <label for="message">How can we help you?</label>
+              </div>
+              <div class="col span-2-of-3">
+                <textarea
+                  name="message"
+                  placeholder="Leave a message"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col span-1-of-3">
+                <label>&nbsp;</label>
+              </div>
+              <div class="col span-2-of-3">
+                <input type="submit" value="Send" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-footer">
+      <div class="row-me footer">
+        <div class="flex-footer">
+          <div class="about-footer">
+            <a href="" class="footer-link">About</a>
+            <a href="" class="footer-link">Contact</a>
+            <a href="" class="footer-link">Terms &amp; Conditions</a>
+          </div>
+          <div class="social-footer">
+            <a href="" class="social-links">
+              <i class="ion-social-facebook"></i>
+              <p>Facebook</p>
+            </a>
+            <a href="" class="social-links">
+              <i class="ion-social-twitter"></i>
+              <p>Twitter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </a>
+            <a href="" class="social-links">
+              <i class="ion-social-youtube"></i>
+              <p>Youtube&nbsp;&nbsp;&nbsp;</p>
+            </a>
+          </div>
+          <div class="subscribe-footer">
+            <h6 class="footer-head">Subscribe to our newsteller</h6>
+            <form action="{% url 'subscribe' %}" class="footer-form" method="POST">
+              {% csrf_token %}
+              <input
+                type="email"
+                class="sub-input"
+                required
+                name="email"
+                placeholder="Email Address"
+              />
+              <button type="submit" class="btn-sub">OK</button>
+            </form>
+          </div>
+          <div class="address-footer">
+            <p>497 Evergreen Rd. Roseville, 95673</p>
+            <p>+44 345 678 903</p>
+            <p>hassan@mail.com</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

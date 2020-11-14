@@ -1,0 +1,65 @@
+@media only screen and (max-width: 1300px) {
+  .hero-text-box {
+    width: 900px;
+  }
+
+  blockquote:after {
+    content: "\201D";
+    font-size: 250%;
+    display: block;
+
+    position: absolute;
+    top: 230px;
+    left: 330px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  nav {
+    padding: 0px 50px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .hero-text-box {
+    width: 650px;
+  }
+
+  blockquote:after {
+    content: "\201D";
+    font-size: 250%;
+    display: block;
+
+    position: absolute;
+    top: 300px;
+    left: 330px;
+  }
+
+  .row-me {
+    margin: 0 auto;
+    margin-left: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-text-box {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 100px;
+  }
+
+  .row-me {
+    flex-direction: column;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    padding: 100px;
+  }
+
+  .col {
+    width: 100%;
+  }
+}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>LIFWH - Admin</title>
+    <style>
+        .alert {
+          width: 30%;
+          padding: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 80px;
+          border-radius: 0px 0px 8px 8px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+          font-size: 18px;
+          font-weight: 700;
+          color: #f4f4f4;
+      }
+
+      .error {
+          background-color: red;
+      }
+
+      .success {
+          background-color: green;
+      }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+            
+    {% endif %}
+    <div class="admin">
+        <!-- <div class="admin-container"> -->
+            <div class="admin-header">
+                <img src=" {% static 'images/logo-white.png' %}" alt="">
+                <a href="{% url 'admin_logout' %}" class="logout">Logout</a>
+            </div>
+            <div class="admin-tab">
+                <a href="{% url 'admin_board' %}">Dashboard</a>
+                <a href="{% url 'admin_course' %}"  class="active">Courses</a>
+                <a href="{% url 'admin_message' %}">Messages</a>
+                <a href="{% url 'admin-settings' %}">Settings</a>
+            </div>
+            <div class="admin-content">
+                <div class="grid-box">
+                    
+                    {% for course in courses %}
+                    <div class="card">
+                        <img src="{{ course.image.url }}" alt="" />
+                        <div class="card-body">
+                          <h4 class="card-title">
+                            {{ course.title }}
+                          </h4>
+                          <div class="card-details">
+                            <span>{{ course.students|length }} Students</span>
+                            <a href="{% url 'admin_course_update' course.id %}">Update</a>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                        
+                      
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    
+</body>
+</html>
